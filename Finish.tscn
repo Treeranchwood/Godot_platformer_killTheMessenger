@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://m4dy5wq8npg"]
+
+[ext_resource type="Texture2D" uid="uid://kgxpv4es1sdf" path="res://Checkerboard_pattern.svg.png" id="1_801fp"]
+[ext_resource type="Script" path="res://Finish.gd" id="1_qxcym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rn1st"]
+size = Vector2(41, 40)
+
+[node name="Area2D" type="Area2D" groups=["Finish"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_qxcym")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Finish"]]
+position = Vector2(-21.5, -20.5)
+scale = Vector2(0.119444, 0.113889)
+texture = ExtResource("1_801fp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Finish"]]
+position = Vector2(-21.5, -21)
+shape = SubResource("RectangleShape2D_rn1st")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

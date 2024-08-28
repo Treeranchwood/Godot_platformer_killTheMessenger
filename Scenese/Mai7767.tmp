@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://dcxbikjnj1oc6"]
+[gd_scene load_steps=35 format=3 uid="uid://dcxbikjnj1oc6"]
 
 [ext_resource type="Texture2D" uid="uid://45x8qa4r6ow8" path="res://Jump (32x32).png" id="1_lkh1a"]
 [ext_resource type="Script" path="res://Scenese/Main_character.gd" id="1_nptnd"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://csma2bgwoaom6" path="res://Jump (32x32) - Copy - Copy.png" id="4_36arc"]
 [ext_resource type="Texture2D" uid="uid://boi68i2vg2iua" path="res://Jump (32x32) - Copy.png" id="5_qb8ah"]
 [ext_resource type="Texture2D" uid="uid://dt1ox6jhv4hp" path="res://Jump left (32x32) - Copy.png" id="7_vtv2f"]
-[ext_resource type="Script" path="res://Scenese/right ShapeCast2D2.gd" id="8_rcva6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbrsq"]
 size = Vector2(17, 23)
@@ -222,10 +221,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_an7m1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_twsb0"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uafl2"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
@@ -241,19 +236,6 @@ position = Vector2(15, 7)
 sprite_frames = SubResource("SpriteFrames_ywttp")
 animation = &"Running"
 autoplay = "idle"
-
-[node name="left ShapeCast2D" type="ShapeCast2D" parent="."]
-position = Vector2(16, 9)
-shape = SubResource("RectangleShape2D_an7m1")
-target_position = Vector2(7, 0)
-collide_with_areas = true
-
-[node name="right ShapeCast2D2" type="ShapeCast2D" parent="."]
-position = Vector2(16, 9)
-shape = SubResource("RectangleShape2D_twsb0")
-target_position = Vector2(-9, -1)
-collide_with_areas = true
-script = ExtResource("8_rcva6")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 material = SubResource("ShaderMaterial_uafl2")
