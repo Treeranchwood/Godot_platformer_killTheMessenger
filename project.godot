@@ -13,12 +13,14 @@ config_version=5
 config/name="Godot_platformer_killTheMessenger"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
 
 [display]
 
+window/size/borderless=true
+window/energy_saving/keep_screen_on=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=2
 
 [input]
 
@@ -50,3 +52,4 @@ slide={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 0)

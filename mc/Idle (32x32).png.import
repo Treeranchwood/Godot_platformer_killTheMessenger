@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csma2bgwoaom6"
-path="res://.godot/imported/Jump (32x32) - Copy - Copy.png-2e9899a842d5205d28f2afad40d70ed1.ctex"
+uid="uid://d0wq060yxdw1b"
+path="res://.godot/imported/Idle (32x32).png-b48788cf70b226652f4edb1377e68dcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Jump (32x32) - Copy - Copy.png"
-dest_files=["res://.godot/imported/Jump (32x32) - Copy - Copy.png-2e9899a842d5205d28f2afad40d70ed1.ctex"]
+source_file="res://mc/Idle (32x32).png"
+dest_files=["res://.godot/imported/Idle (32x32).png-b48788cf70b226652f4edb1377e68dcf.ctex"]
 
 [params]
 

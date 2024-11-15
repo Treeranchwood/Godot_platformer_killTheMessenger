@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name player
+
 
 
 const SPEED = 300.0
@@ -17,15 +19,16 @@ var slid = false
 var GroundedOnce = false
 var slideSpeed = false
 var firstSlideFrame = false
+var leftKeyPressed = false
+var rightKeyPressed = false
+
+
 
 
 
 func lie_down(dir):
-	var leftWall = $"left ShapeCast2D".is_colliding()
 
 	#declan says hi
-	
-	
 	if dir == 1:
 		$AnimatedSprite2D.animation = "Sliding_left"
 		isSliding = true
@@ -33,17 +36,34 @@ func lie_down(dir):
 	elif dir == -1:
 		$AnimatedSprite2D.animation = "Sliding_right"
 		isSliding = true
-func stand_up():
+		
+func stand_up(flip):
 		# Flip the character back to standing position
-		$AnimatedSprite2D.animation = "idle"
+
+		if flip == 1:
+			$AnimatedSprite2D.animation = "idle_left"
+
+		else:
+			$AnimatedSprite2D.animation = "idle"
+
+			
 		isSliding = false
+		
+		if leftKeyPressed:
+			$AnimatedSprite2D.animation = "run_left"
+
+		elif rightKeyPressed:
+			$AnimatedSprite2D.animation = "Running"
+
+func _ready():
+	Engine.max_fps = 60  # Set your desired FPS cap here
 
 
 
 
 func _physics_process(delta):
 	#assign the vector2 function to a variable used to flip
-	
+
 	var isGrounded = is_on_floor()
 	if isGrounded:
 		GroundedOnce = true
@@ -72,38 +92,45 @@ func _physics_process(delta):
 	
 	
 	# Handle Jump.
+
 	if Input.is_action_just_pressed("jump") and jumpable:
 		velocity.y = JUMP_VELOCITY
-		coyoteTimer = 0
-		
-		
-
-		
+		coyoteTimer = 0	
 		
 		
 	if Input.is_action_just_pressed("slide"):
-		velocityCalc = velocity.x + dir * 30
 		slid = true;
 		firstSlideFrame = true;
-		
 		if dir == 1:
 			lie_down(-1)			
 		elif dir == -1:
 			lie_down(1)
-
-	
-	
-	
-	
-	
+			
 	if Input.is_action_just_released("slide"):
-		stand_up()
+		stand_up(dir)
+
 	if Input.is_action_just_pressed("left"):
+		leftKeyPressed = true
 		$AnimatedSprite2D.animation = "run_left"
+
+		
+	if Input.is_action_just_released("left"):
+		leftKeyPressed = false
+		stand_up(1)
 		
 	if Input.is_action_just_pressed("right"):
 		$AnimatedSprite2D.animation = "Running"
+		rightKeyPressed = true
 		
+	if Input.is_action_just_released("right"):
+		rightKeyPressed = false
+		stand_up(-1)
+		
+	
+	
+	
+	
+
 		
 		
 		
@@ -115,7 +142,7 @@ func _physics_process(delta):
 
 	if velocity.x > 351 && direction or velocity.x < -351 && direction:
 		firstSlideFrame = false
-		velocity.x = lerp(velocity.x, SPEED, 0.05)				
+		velocity.x = lerp(velocity.x, 0.0, 0.05)				
 	elif direction != 0:
 		# Apply sliding adjustment
 		if isSliding && slid && firstSlideFrame == true:
